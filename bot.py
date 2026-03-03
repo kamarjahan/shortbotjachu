@@ -151,15 +151,7 @@ async def main():
 
     logger.info(f"Web server running on port {port}")
 
-    # Clear webhook using requests
-    try:
-        url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteWebhook?drop_pending_updates=true"
-        requests.get(url, timeout=10)
-        logger.info("Webhook cleared.")
-    except Exception as e:
-        logger.warning(f"Webhook clearing failed: {e}")
-
-    # Start bot
+    # Start bot in polling mode
     await app.start()
 
     me = await app.get_me()
